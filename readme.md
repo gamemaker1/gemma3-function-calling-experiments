@@ -1,4 +1,4 @@
-# <div align="center"> `function-calling-experiments` </div>
+# <div align="center"> `gemma3-function-calling-experiments` </div>
 
 > This repository contains my experiments to discern Gemma 3's function
 > calling capabilities.
@@ -37,8 +37,8 @@ off points 1, 2, 3, 5, 6, and 8 (to some extent). This involves:
 - defining possible responses and errors from function calls, enabling the model to plan what it can do with the output.
 - specifying that functions can be called parallely, but with the risk of asynchronous output.
 
-The system prompt for the experiment is in [`experiments/cumulative/prompts/00-system-prompt.user`](experiments/cumulative/prompts/00-system-prompt.user),
-while the function definitions are in [`experiments/cumulative/prompts/01-functions.user`](experiments/cumulative/prompts/01-functions.user).
+The system prompt for the experiment is [here](experiments/cumulative/prompts/00-system-prompt.user),
+and the function definitions are in [this file](experiments/cumulative/prompts/01-functions.user).
 
 ## Running and Creating Experiments
 
