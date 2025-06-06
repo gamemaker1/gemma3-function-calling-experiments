@@ -1,0 +1,78 @@
+```function
+{
+	"name": "get_current_time",
+	"description": "Returns the current time in ISO8601 format in the user's current timezone. Useful when the user provides a relative time and functions require an exact timestamp.",
+	"parameters": {
+		"type": "object",
+		"properties": {},
+		"required": []
+	},
+	"responses": [{
+		"type": "object",
+		"properties": {
+			"timestamp": {
+				"type": "string",
+				"format": "date-time",
+				"description": "Current time in ISO8601 format (e.g., '2024-03-15T14:30:45.123Z')"
+			}
+		}
+	}],
+	"examples": [{
+		"description": "What is the time right now?",
+		"parameters": {},
+	}]
+}
+```
+
+```function
+  {
+	"name": "get_user_form_response",
+	"description": "Retrieves a user's form response given the form ID and username. Returns the form responses as key-value pairs.",
+	"parameters": {
+		"type": "object",
+		"properties": {
+			"form_id": {
+				"type": "string",
+				"description": "Unique identifier of the form"
+			},
+			"username": {
+				"type": "string", 
+				"description": "Username of the user whose response to retrieve"
+			}
+		},
+		"required": ["form_id", "username"]
+	},
+	"responses": [{
+		"type": "object",
+		"properties": {
+			"form_id": {
+				"type": "string",
+				"description": "ID of the form"
+			},
+			"username": {
+				"type": "string",
+				"description": "Username of the respondent"
+			},
+			"responses": {
+				"type": "object",
+				"description": "User's form responses as key-value pairs",
+				"additionalProperties": true
+			}
+		}
+	}],
+	"errors": [{
+		"name": "FormNotFound",
+		"description": "The form ID provided is invalid, i.e., no form with that ID exists."
+	}, {
+		"name": "UserNotResponded",
+		"description": "The username does not exist or has not responded on this form."
+	}],
+	"examples": [{
+		"description": "Get john_doe's response on form 456",
+		"parameters": {
+			"form_id": "456",
+			"username": "john_doe"
+		}
+	}]
+}
+```

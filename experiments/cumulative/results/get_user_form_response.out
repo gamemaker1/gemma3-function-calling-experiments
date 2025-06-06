@@ -1,0 +1,51 @@
+```function_output
+{
+	"id": "2",
+	"result": {
+		"form_id": "293",
+		"username": "agni",
+		"responses": {
+			"name": "agni",
+			"preference": "middle"
+		}
+	}
+}
+```
+
+```function_output
+{
+	"id": "3",
+	"result": {
+		"form_id": "293",
+		"username": "vayu",
+		"responses": {
+			"name": "vayu",
+			"preference": "window"
+		}
+	}
+}
+```
+
+```function_output
+{
+	"id": "4",
+	"error": {
+		"name": "UserNotResponded",
+		"message": "User with username `prithvi` does not exist."
+	}
+}
+```
+
+```function_output
+{
+	"id": "5",
+	"result": {
+		"form_id": "293",
+		"username": "aakash",
+		"responses": {
+			"name": "aakash",
+			"preference": "isle"
+		}
+	}
+}
+```
