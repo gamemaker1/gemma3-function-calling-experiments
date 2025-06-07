@@ -4,7 +4,7 @@ import ollama
 
 from datetime import datetime
 from rich.console import Console
-from rich.prompt import Prompt
+from rich.prompt import Prompt, IntPrompt
 from rich.panel import Panel
 from rich.text import Text
 from rich.markdown import Markdown
@@ -68,15 +68,29 @@ def get_multiline_input():
 def main():
     display_banner()
 
-    experiment_name = Prompt.ask(
-        "[bold cyan]enter experiment name[/bold cyan]",
+    experiments_dir = "experiments"
+    if not os.path.exists(experiments_dir):
+        console.print(f"experiments directory '{experiments_dir}' not found!", style="red bold")
+        return
+
+    experiments = [d for d in os.listdir(experiments_dir)
+                  if os.path.isdir(os.path.join(experiments_dir, d))]
+    if not experiments:
+        console.print("no experiments found in experiments directory", style="yellow")
+        return
+
+    console.print("[bold cyan]available experiments:[/bold cyan]")
+    for i, exp in enumerate(experiments, 1):
+        console.print(f"  {i}. {exp}")
+    console.print()
+
+    choice = IntPrompt.ask(
+        "[bold cyan]select experiment[/bold cyan]",
+        choices=[str(i) for i in range(1, len(experiments) + 1)],
         console=console
     )
-
+    experiment_name = experiments[choice - 1]
     experiment_path = f"experiments/{experiment_name}"
-    if not os.path.exists(experiment_path):
-        console.print(f"experiment directory '{experiment_path}' not found!", style="red bold")
-        return
 
     messages = load_prompts(experiment_path)
     if not messages:
