@@ -100,11 +100,16 @@ def main():
                 content = ""
                 console.print(f"[bold blue]{model}[/bold blue] (the response will be streamed):")
 
-                for chunk in agent.chat(model=model, messages=messages, stream=True):
-                    if 'message' in chunk and 'content' in chunk['message']:
-                        chunk_content = chunk['message']['content']
-                        content += chunk_content
-                        console.print(chunk_content, end='', style="blue")
+                with Live(console=console, refresh_per_second=10) as live:
+                    for chunk in agent.chat(model=model, messages=messages, stream=True):
+                        if 'message' in chunk and 'content' in chunk['message']:
+                            chunk_content = chunk['message']['content']
+                            content += chunk_content
+
+                            try:
+                                live.update(Markdown(content))
+                            except:
+                                live.update(content)
 
                 console.print()
 
