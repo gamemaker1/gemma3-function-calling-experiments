@@ -76,3 +76,79 @@
 	}]
 }
 ```
+
+```function
+  {
+	"name": "get_weather_for_place",
+	"description": "Retrieves the weather conditions for a place given the name of the place, the units to use, and the dates to fetch the weather for.",
+	"parameters": {
+		"type": "object",
+		"properties": {
+			"place": {
+				"type": "string",
+				"description": "The name of a place - could be a city name, unicode name of a location, area code or airport code. Do not assume a default and ask the user for the location."
+			},
+			"units": {
+				"type": "string",
+				"enum": ["metric", "uscs"]
+				"description": "The units to use in the weather report. Defaults to metric."
+			},
+			"dates": {
+				"type": "array",
+				"items": {
+					"type": "string",
+					"format": "date",
+					"description": "A date formatted as yyyy-mm-dd, for which the weather service will return its forecast. Defaults to a one-element array containing only today's date."
+				}
+			}
+		},
+		"required": ["place"]
+	},
+	"responses": [{
+		"type": "array",
+		"items": {
+			"type": "object",
+			"properties": {
+				"temperature": {
+					"type": "object",
+					"properties": {
+						"feels": {
+							"type": "number",
+							"description": "The temperature it feels like it is, in the specified units."
+						},
+						"actual": {
+							"type": "number",
+							"description": "The measured temperature, in the specified units."
+						}
+					}
+				},
+				"precipitation": {
+					"type": "number",
+					"description": "The forecasted rainfall, in inches or mm depending on the unit specified."
+				},
+				"uv": {
+					"type": "number",
+					"description": "The value of the UV index.",
+				},
+				"weather": {
+					"type": "string",
+					"description": "A short phrase describing the current weather in a user-friendly manner."
+				}
+			}
+		}
+	}],
+	"errors": [{
+		"name": "UnknownLocation",
+		"description": "The location provided is not known to this weather service."
+	}, {
+		"name": "ServiceUnavailable",
+		"description": "The weather service is currently down."
+	}],
+	"examples": [{
+		"description": "What's the weather in Pune like right now?",
+		"parameters": {
+			"place": "Pune"
+		}
+	}]
+}
+```
