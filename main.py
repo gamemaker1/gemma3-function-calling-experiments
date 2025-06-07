@@ -53,20 +53,15 @@ def format_response(content, model_name):
     )
 
 def get_multiline_input():
-    console.print("[bold green]you[/bold green] (type your message, empty line to send):")
+    console.print("[bold green]you[/bold green] (type your message, press ctrl+d when done):")
     lines = []
 
-    while True:
-        try:
+    try:
+        while True:
             line = input()
-            if line.strip() == "" and lines:
-                break
-            elif line.strip() == "" and not lines:
-                continue
-            else:
-                lines.append(line)
-        except EOFError:
-            break
+            lines.append(line)
+    except EOFError:
+        pass
 
     return '\n'.join(lines)
 
