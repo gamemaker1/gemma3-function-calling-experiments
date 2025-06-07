@@ -1,6 +1,6 @@
 ```function_output
 {
-	"id": 1,
+	"id": "1",
 	"result": [{
 		"date": "2025-06-07"
 		"temperature": {
@@ -25,7 +25,7 @@
 
 ```function_output
 {
-	"id": 2,
+	"id": "2",
 	"error": {
 		"name": "ServiceUnavailable",
 		"message": "The service has hit its rate limit of 1 million requests globally. Please try again later."

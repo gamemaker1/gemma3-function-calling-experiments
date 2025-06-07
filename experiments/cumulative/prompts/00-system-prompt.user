@@ -31,7 +31,7 @@ To call a function, you must output the following code block (it must be valid J
 
 ```function_call
 {
-	"id": this id will be mentioned in the function output so you know which function call produced which output,
+	"id": this string will be mentioned in the function output so you know which function call produced which output,
 	"function": the name of the function to call,
 	"parameters": a dictionary of parameter names and values to pass to the function
 }
