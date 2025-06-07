@@ -132,7 +132,7 @@ def main():
     finally:
         timestamp = datetime.now().replace(microsecond=0).isoformat().replace(":", "-")
         with open(f"{experiment_path}/outputs/{timestamp}.json", "w") as f:
-            json.dump(messages, f)
+            json.dump(messages, f, indent = 2)
 
 if __name__ == "__main__":
     main()
