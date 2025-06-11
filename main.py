@@ -115,7 +115,7 @@ def main():
                 console.print(f"[bold blue]{model}[/bold blue] (the response will be streamed):")
 
                 with Live(console=console, refresh_per_second=10) as live:
-                    for chunk in agent.chat(model=model, messages=messages, stream=True):
+                    for chunk in agent.chat(model=model, messages=messages, stream=True, format="json"):
                         if 'message' in chunk and 'content' in chunk['message']:
                             chunk_content = chunk['message']['content']
                             content += chunk_content
